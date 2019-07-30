@@ -327,11 +327,11 @@ module AnnotateModels
     def get_schema_header_text(klass, options = {})
       info = "#\n"
       if options[:format_markdown]
-        info << "# Table name: `#{klass.table_name}`\n"
+        info << "# Table name: `#{klass.table_name}`#{ options[:with_comment] ? ' ('+ klass.connection.table_comment(klass.table_name) + ')': '' }\n"
         info << "#\n"
         info << "# ### Columns\n"
       else
-        info << "# Table name: #{klass.table_name}\n"
+        info << "# Table name: #{klass.table_name}#{ options[:with_comment] ? ' ('+ klass.connection.table_comment(klass.table_name) + ')': '' }\n"
       end
       info << "#\n"
     end
